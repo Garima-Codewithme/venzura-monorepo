@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'motion/react'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const ABOUT_VIDEO_SRC = '/videos/about-video.mp4'
 const HEADING_TEXT = 'Modern Pharma Built On Trust & Quality'
@@ -16,6 +16,8 @@ export default function AboutHeroVideo({
 }: AboutHeroVideoProps) {
   const [displayText, setDisplayText] = useState('')
   const [typingDone, setTypingDone] = useState(false)
+  const [videoReady, setVideoReady] = useState(false)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
 
   useEffect(() => {
     let currentIndex = 0
@@ -36,20 +38,53 @@ export default function AboutHeroVideo({
     return () => clearTimeout(timeoutId)
   }, [])
 
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const handleReady = () => {
+      setVideoReady(true)
+    }
+
+    if (video.readyState >= 2) {
+      setVideoReady(true)
+    }
+
+    video.addEventListener('loadeddata', handleReady)
+    video.addEventListener('canplay', handleReady)
+
+    return () => {
+      video.removeEventListener('loadeddata', handleReady)
+      video.removeEventListener('canplay', handleReady)
+    }
+  }, [])
+
   return (
     <section className="relative overflow-hidden border-b border-slate-200 bg-black">
       <div className="relative min-h-[560px] w-full md:min-h-[660px]">
+        <div
+          className={`absolute inset-0 transition-opacity duration-700 ${
+            videoReady ? 'opacity-0' : 'opacity-100'
+          }`}
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.20),transparent_24%),radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.18),transparent_30%),linear-gradient(135deg,#020617,#0f172a,#082f49)]" />
+        </div>
+
         <motion.video
+          ref={videoRef}
+          key={ABOUT_VIDEO_SRC}
           src={ABOUT_VIDEO_SRC}
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
-          poster="/images/company-building.jpg"
-          initial={{ scale: 1.04, opacity: 0.7 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.2 }}
+          preload="auto"
+          initial={{ scale: 1.04, opacity: 0 }}
+          animate={{
+            scale: 1,
+            opacity: videoReady ? 1 : 0,
+          }}
+          transition={{ duration: 0.9 }}
           className="absolute inset-0 h-full w-full object-cover brightness-[1.12] contrast-[1.06] saturate-[1.08]"
         />
 
