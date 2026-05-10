@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -19,6 +20,7 @@ const PRODUCT_BY_SLUG_QUERY = `
     "slug": slug.current,
     shortDescription,
     composition,
+    compositionItems,
     dosageForm,
     packaging,
     image,
@@ -35,6 +37,7 @@ type Product = {
   slug: string
   shortDescription?: string
   composition?: string
+  compositionItems?: string[]
   dosageForm?: string
   packaging?: string
   image?: unknown
@@ -163,13 +166,25 @@ export default async function ProductDetailPage({
             ) : null}
 
             <p className="mt-5 text-base leading-7 text-slate-600">
-              {product.shortDescription || 'Detailed product information will appear here.'}
+              {product.shortDescription ||
+                'Detailed product information will appear here.'}
             </p>
 
             <div className="mt-8 space-y-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
               <div>
                 <p className="text-sm font-medium text-slate-500">Composition</p>
-                <p className="mt-1 text-slate-800">{product.composition || '-'}</p>
+
+                {product.compositionItems && product.compositionItems.length > 0 ? (
+                  <ul className="mt-2 space-y-2 text-slate-800">
+                    {product.compositionItems.map((item) => (
+                      <li key={item} className="leading-6">
+                        • {item}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="mt-1 text-slate-800">{product.composition || '-'}</p>
+                )}
               </div>
 
               <div>

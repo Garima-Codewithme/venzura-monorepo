@@ -22,11 +22,11 @@ export default function RootLayout({
 }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="bg-white text-slate-900 antialiased transition-colors dark:bg-slate-950 dark:text-slate-100">
+      <body className="bg-[var(--background)] text-[var(--text)] antialiased">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <Header />

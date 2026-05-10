@@ -4,13 +4,15 @@ export default defineType({
   name: 'product',
   title: 'Product',
   type: 'document',
+
   fields: [
     defineField({
       name: 'name',
       title: 'Product Name',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) => Rule.required().min(2),
     }),
+
     defineField({
       name: 'slug',
       title: 'Slug',
@@ -21,6 +23,7 @@ export default defineType({
       },
       validation: (Rule) => Rule.required(),
     }),
+
     defineField({
       name: 'category',
       title: 'Category',
@@ -31,6 +34,7 @@ export default defineType({
         disableNew: true,
       },
     }),
+
     defineField({
       name: 'subcategory',
       title: 'Subcategory',
@@ -41,33 +45,51 @@ export default defineType({
         disableNew: true,
       },
     }),
+
     defineField({
       name: 'shortDescription',
       title: 'Short Description',
       type: 'text',
       rows: 3,
     }),
+
     defineField({
       name: 'composition',
       title: 'Composition',
       type: 'text',
-      rows: 3,
+      rows: 4,
+      description: 'Optional plain text composition.',
     }),
+
+    defineField({
+      name: 'compositionItems',
+      title: 'Composition Items',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'Use this for products where each composition item should be shown in separate lines.',
+    }),
+
     defineField({
       name: 'dosageForm',
       title: 'Dosage Form',
       type: 'string',
+      description: 'Example: Syrup, Capsules, Oil, Tablet, Injection.',
     }),
+
     defineField({
       name: 'packaging',
       title: 'Packaging',
       type: 'string',
+      description: 'Example: 200ml, 60 Capsule, 10x10 Blister Pack.',
     }),
+
     defineField({
       name: 'division',
       title: 'Division',
       type: 'string',
+      description: 'Example: Ayurvedic, Cosmetic, Veterinary, Nutra Supplement.',
     }),
+
     defineField({
       name: 'image',
       title: 'Product Image',
@@ -76,6 +98,7 @@ export default defineType({
         hotspot: true,
       },
     }),
+
     defineField({
       name: 'featured',
       title: 'Featured',
@@ -83,4 +106,26 @@ export default defineType({
       initialValue: false,
     }),
   ],
+
+  preview: {
+    select: {
+      title: 'name',
+      media: 'image',
+      categoryTitle: 'category.title',
+      subcategoryTitle: 'subcategory.title',
+      dosageForm: 'dosageForm',
+      packaging: 'packaging',
+    },
+    prepare(selection) {
+      const { title, media, categoryTitle, subcategoryTitle, dosageForm, packaging } = selection
+
+      const parts = [categoryTitle, subcategoryTitle, dosageForm, packaging].filter(Boolean)
+
+      return {
+        title,
+        media,
+        subtitle: parts.join(' • '),
+      }
+    },
+  },
 })

@@ -1,27 +1,414 @@
 @import "tailwindcss";
-@custom-variant dark (&:where(.dark, .dark *));
+
+/* =====================================================
+   VENZURA GLOBAL BASE
+===================================================== */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f6f6f6;
+  --soft-accent: #c7ffd8;
+  --primary: #98ded9;
+  --dark: #09637e;
+  --text: #1e2520;
+
+  /* Professional text hierarchy */
+  --heading-text: #09637e;
+  --body-strong: #27444d;
+  --body-text: #3d5a63;
+  --muted-text: #6a8087;
+  --on-dark: #ffffff;
+  --on-dark-muted: rgba(255, 255, 255, 0.82);
+
+  --card: #ffffff;
+  --border: rgba(9, 99, 126, 0.12);
+
+  --background-rgb: 246 246 246;
+  --soft-accent-rgb: 199 255 216;
+  --primary-rgb: 152 222 217;
+  --dark-rgb: 9 99 126;
+  --text-rgb: 30 37 32;
+
+  --gradient-text: linear-gradient(
+    90deg,
+    #09637e 0%,
+    #0b7d97 48%,
+    #98ded9 100%
+  );
+
+  --gradient-button: linear-gradient(
+    135deg,
+    #09637e 0%,
+    #0b7d97 58%,
+    #98ded9 145%
+  );
+
+  --gradient-soft: linear-gradient(
+    135deg,
+    #f6f6f6 0%,
+    rgba(199, 255, 216, 0.52) 55%,
+    #ffffff 100%
+  );
+
+  --gradient-page: linear-gradient(
+    180deg,
+    #f6f6f6 0%,
+    #f7fcfa 42%,
+    #ffffff 100%
+  );
+
+  --gradient-dark: linear-gradient(
+    135deg,
+    #064c61 0%,
+    #09637e 58%,
+    #0b7d97 110%
+  );
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  background: var(--background);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background: var(--gradient-page);
+  color: var(--body-text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(152, 222, 217, 0.55);
+  color: var(--dark);
+}
+
+/* =====================================================
+   THEME HELPERS
+===================================================== */
+
+.brand-gradient-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.brand-button {
+  background: var(--gradient-button);
+  color: #ffffff;
+}
+
+.brand-button:hover {
+  filter: brightness(1.05);
+}
+
+.brand-soft-card {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    rgba(199, 255, 216, 0.46) 100%
+  );
+}
+
+.brand-line {
+  background: linear-gradient(
+    90deg,
+    #09637e 0%,
+    #98ded9 60%,
+    #c7ffd8 100%
+  );
+}
+
+/* =====================================================
+   SOFT ANIMATIONS
+===================================================== */
+
+@keyframes floatSoft {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes driftSoft {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(10px, -12px, 0) scale(1.04);
+  }
+}
+
+@keyframes pulseSoft {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-float-soft {
+  animation: floatSoft 6s ease-in-out infinite;
+}
+
+.animate-drift-soft {
+  animation: driftSoft 10s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulseSoft 5s ease-in-out infinite;
+}
+
+/* =====================================================
+   PROFESSIONAL TEXT MAPPING
+   Ye sab description / info / paragraph text ko fix karega.
+===================================================== */
+
+/* Main headings */
+.text-slate-900,
+.text-slate-800 {
+  color: var(--heading-text) !important;
+}
+
+/* Strong body / sub-head / chips */
+.text-slate-700 {
+  color: var(--body-strong) !important;
+}
+
+/* Paragraphs / descriptions */
+.text-slate-600 {
+  color: var(--body-text) !important;
+}
+
+/* Muted labels / helper text */
+.text-slate-500,
+.text-slate-400 {
+  color: var(--muted-text) !important;
+}
+
+/* White text should stay white */
+.text-white {
+  color: #ffffff !important;
+}
+
+/* Dark section text hierarchy */
+.text-slate-300 {
+  color: var(--on-dark-muted) !important;
+}
+
+.text-slate-200,
+.text-slate-100 {
+  color: var(--on-dark) !important;
+}
+
+/* Blue text classes used in current components */
+.text-blue-700,
+.text-blue-800,
+.text-cyan-700,
+.text-sky-700 {
+  color: var(--heading-text) !important;
+}
+
+.text-blue-300,
+.text-blue-200 {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.text-cyan-100,
+.text-cyan-200,
+.text-sky-200 {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+.text-blue-100,
+.text-cyan-50,
+.text-sky-50 {
+  color: #ffffff !important;
+}
+
+/* =====================================================
+   BACKGROUND / BORDER / GRADIENT OVERRIDES
+   Green cast ko reduce karke cleaner professional look deta hai.
+===================================================== */
+
+/* Solid backgrounds */
+.bg-blue-700,
+.bg-blue-800,
+.bg-cyan-700,
+.bg-sky-700 {
+  background-color: var(--dark) !important;
+}
+
+.bg-blue-600,
+.bg-blue-500,
+.bg-cyan-600,
+.bg-cyan-500,
+.bg-sky-500 {
+  background-color: var(--primary) !important;
+}
+
+.bg-blue-950,
+.bg-slate-950 {
+  background-color: #064c61 !important;
+}
+
+.bg-blue-50,
+.bg-cyan-50,
+.bg-sky-50 {
+  background-color: #f4fbfa !important;
+}
+
+.bg-blue-100,
+.bg-cyan-100,
+.bg-sky-100 {
+  background-color: rgba(152, 222, 217, 0.18) !important;
+}
+
+/* Soft opacity backgrounds */
+[class~='bg-blue-100/70'],
+[class~='bg-blue-100/60'],
+[class~='bg-blue-100/55'],
+[class~='bg-blue-100/50'],
+[class~='bg-blue-100/40'] {
+  background-color: rgba(152, 222, 217, 0.18) !important;
+}
+
+[class~='bg-cyan-100/60'],
+[class~='bg-cyan-100/50'],
+[class~='bg-cyan-100/40'],
+[class~='bg-sky-100/40'],
+[class~='bg-sky-100/35'],
+[class~='bg-sky-100/30'] {
+  background-color: rgba(199, 255, 216, 0.18) !important;
+}
+
+[class~='bg-cyan-200/45'],
+[class~='bg-cyan-200/40'],
+[class~='bg-cyan-200/35'],
+[class~='bg-cyan-200/30'] {
+  background-color: rgba(152, 222, 217, 0.22) !important;
+}
+
+[class~='bg-blue-200/45'],
+[class~='bg-blue-200/40'],
+[class~='bg-blue-200/35'],
+[class~='bg-blue-200/30'],
+[class~='bg-blue-200/25'] {
+  background-color: rgba(9, 99, 126, 0.10) !important;
+}
+
+[class~='bg-cyan-400/30'],
+[class~='bg-cyan-400/25'],
+[class~='bg-cyan-400/20'],
+[class~='bg-cyan-400/18'],
+[class~='bg-cyan-400/16'],
+[class~='bg-cyan-400/14'],
+[class~='bg-cyan-400/10'] {
+  background-color: rgba(152, 222, 217, 0.24) !important;
+}
+
+[class~='bg-blue-500/35'],
+[class~='bg-blue-500/30'],
+[class~='bg-blue-500/25'],
+[class~='bg-blue-500/20'],
+[class~='bg-blue-500/18'],
+[class~='bg-blue-500/16'],
+[class~='bg-blue-500/15'],
+[class~='bg-blue-500/14'],
+[class~='bg-blue-500/10'] {
+  background-color: rgba(9, 99, 126, 0.14) !important;
+}
+
+/* Borders */
+.border-blue-100,
+.border-blue-200,
+.border-cyan-100,
+.border-cyan-200,
+.border-sky-100,
+.border-sky-200 {
+  border-color: var(--border) !important;
+}
+
+.border-blue-700,
+.border-cyan-500,
+.border-sky-500 {
+  border-color: var(--dark) !important;
+}
+
+/* Rings */
+.ring-blue-100,
+.ring-cyan-100,
+.ring-sky-100 {
+  --tw-ring-color: var(--border) !important;
+}
+
+/* Gradient FROM */
+.from-blue-700,
+.from-blue-600,
+.from-blue-500,
+.from-cyan-500,
+.from-cyan-400,
+.from-sky-500,
+.from-sky-400 {
+  --tw-gradient-from: var(--dark) var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(9, 99, 126, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+/* Gradient VIA */
+.via-blue-700,
+.via-blue-600,
+.via-cyan-500,
+.via-cyan-400,
+.via-sky-400,
+.via-sky-300 {
+  --tw-gradient-via: var(--primary) var(--tw-gradient-via-position) !important;
+  --tw-gradient-to: rgba(152, 222, 217, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to) !important;
+}
+
+/* Gradient TO */
+.to-cyan-500,
+.to-cyan-400,
+.to-sky-300,
+.to-sky-200 {
+  --tw-gradient-to: var(--soft-accent) var(--tw-gradient-to-position) !important;
+}
+
+.to-blue-950,
+.to-blue-900,
+.to-slate-900 {
+  --tw-gradient-to: #064c61 var(--tw-gradient-to-position) !important;
+}
+
+/* Old hardcoded blue section bg */
+.bg-\[\#eef4ff\] {
+  background-color: #f4fbfa !important;
 }
