@@ -12,6 +12,17 @@ CATEGORY_ID = "category_nutra_supplement"
 CATEGORY_SLUG = "nutra-supplement"
 DIVISION = "Nutra Supplement"
 
+SUBCATEGORY_MAP = {
+    "Tablet": ("subcategory_nutra_tablet", "Tablet"),
+    "Capsule": ("subcategory_nutra_capsule", "Capsule"),
+    "Syrup": ("subcategory_nutra_syrup", "Syrup"),
+    "Sachet": ("subcategory_nutra_sachet", "Sachet"),
+    "Powder": ("subcategory_nutra_powder", "Powder"),
+    "Softgel": ("subcategory_nutra_softgel", "Softgel"),
+    "Drops": ("subcategory_nutra_drops", "Drops"),
+    "Liquid": ("subcategory_nutra_liquid", "Liquid"),
+}
+
 def clean_text(value):
     if value is None:
         return ""
@@ -28,8 +39,8 @@ def build_short_description(name, packaging):
     packaging_text = f" Available in {packaging}." if packaging else ""
     return f"{name} from Venzura Medcor nutra supplement portfolio.{packaging_text}"
 
-def guess_dosage_form(packaging):
-    text = clean_text(packaging).lower()
+def guess_dosage_form(name, packaging):
+    text = f"{clean_text(name)} {clean_text(packaging)}".lower()
 
     if "tablet" in text:
         return "Tablet"
@@ -47,7 +58,8 @@ def guess_dosage_form(packaging):
         return "Drops"
     if "liquid" in text:
         return "Liquid"
-    return "Nutra Supplement"
+
+    return "Capsule"
 
 def main():
     if not INPUT_FILE.exists():
@@ -103,6 +115,9 @@ def main():
         if not name:
             continue
 
+        dosage_form = guess_dosage_form(name, packaging)
+        subcategory_id, subcategory_title = SUBCATEGORY_MAP[dosage_form]
+
         base_slug = slugify(name)
         if not base_slug:
             continue
@@ -124,10 +139,11 @@ def main():
                 "slug": final_slug,
                 "categoryId": CATEGORY_ID,
                 "categorySlug": CATEGORY_SLUG,
-                "subcategoryId": "",
+                "subcategoryId": subcategory_id,
+                "subcategoryTitle": subcategory_title,
                 "shortDescription": build_short_description(name, packaging),
                 "composition": composition,
-                "dosageForm": guess_dosage_form(packaging),
+                "dosageForm": dosage_form,
                 "packaging": packaging,
                 "division": DIVISION,
                 "featured": False,
@@ -137,8 +153,16 @@ def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     OUTPUT_FILE.write_text(json.dumps(products, indent=2), encoding="utf-8")
 
+    summary = {}
+    for item in products:
+        summary[item["subcategoryTitle"]] = summary.get(item["subcategoryTitle"], 0) + 1
+
     print(f"Saved {len(products)} nutra supplement products to:")
     print(OUTPUT_FILE)
+
+    print("\nSubcategory summary:")
+    for key, value in sorted(summary.items()):
+        print(f"- {key}: {value}")
 
 if __name__ == "__main__":
     main()

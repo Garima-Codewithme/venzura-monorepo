@@ -27,17 +27,8 @@ const client = createClient({
   useCdn: false,
 })
 
-if (
-  !process.env.SANITY_PROJECT_ID ||
-  !process.env.SANITY_DATASET ||
-  !process.env.SANITY_API_WRITE_TOKEN
-) {
-  console.error('Missing SANITY env values in .env.local')
-  process.exit(1)
-}
-
 function makeDocumentId(item) {
-  const seed = `${item.categorySlug}|${item.slug}|${item.name}`
+  const seed = `${item.categorySlug}|${item.subcategoryId}|${item.slug}|${item.name}`
   const hash = crypto.createHash('sha1').update(seed).digest('hex').slice(0, 18)
   return `product_${hash}`
 }
@@ -56,6 +47,10 @@ async function run() {
         _type: 'reference',
         _ref: item.categoryId,
       },
+      subcategory: {
+        _type: 'reference',
+        _ref: item.subcategoryId,
+      },
       shortDescription: item.shortDescription,
       composition: item.composition,
       dosageForm: item.dosageForm,
@@ -65,7 +60,7 @@ async function run() {
     }
 
     await client.createOrReplace(doc)
-    console.log(`Imported: ${item.name}`)
+    console.log(`Imported: ${item.name} -> ${item.subcategoryTitle}`)
   }
 
   console.log(`\nDone. Imported ${products.length} nutra supplement products.`)
