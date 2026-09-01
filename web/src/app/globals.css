@@ -1,68 +1,125 @@
 @import "tailwindcss";
 
 /* =====================================================
-   VENZURA GLOBAL BASE
+   VENZURA MEDCOR
+   PREMIUM BLUE DESIGN SYSTEM
 ===================================================== */
 
 :root {
-  --background: #f6f6f6;
-  --soft-accent: #c7ffd8;
-  --primary: #98ded9;
-  --dark: #09637e;
-  --text: #1e2520;
-
-  /* Professional text hierarchy */
-  --heading-text: #09637e;
-  --body-strong: #27444d;
-  --body-text: #3d5a63;
-  --muted-text: #6a8087;
-  --on-dark: #ffffff;
-  --on-dark-muted: rgba(255, 255, 255, 0.82);
-
+  /* Base */
+  --background: #f6f9ff;
+  --background-soft: #eef5ff;
+  --surface: #ffffff;
+  --surface-soft: #f3f8ff;
   --card: #ffffff;
-  --border: rgba(9, 99, 126, 0.12);
 
-  --background-rgb: 246 246 246;
-  --soft-accent-rgb: 199 255 216;
-  --primary-rgb: 152 222 217;
-  --dark-rgb: 9 99 126;
-  --text-rgb: 30 37 32;
+  /* Brand Blue Family */
+  --deep: #072b50;
+  --dark: #0b3f70;
+  --primary: #1f6fd1;
+  --primary-light: #4ea3f1;
+  --soft-accent: #a9d5ff;
+
+  /* Text */
+  --heading-text: #0b3f70;
+  --body-strong: #294b6b;
+  --body-text: #4b6680;
+  --muted-text: #71869a;
+
+  --on-dark: #ffffff;
+  --on-dark-muted: rgba(255, 255, 255, 0.78);
+  --on-dark-soft: #d8eaff;
+
+  /* Backward compatibility for old components */
+  --text: #294b6b;
+  --muted: #71869a;
+
+  /* Borders */
+  --border: rgba(31, 111, 209, 0.14);
+  --border-strong: rgba(31, 111, 209, 0.26);
+
+  /* RGB */
+  --background-rgb: 246 249 255;
+  --soft-accent-rgb: 169 213 255;
+  --primary-light-rgb: 78 163 241;
+  --primary-rgb: 31 111 209;
+  --dark-rgb: 11 63 112;
+  --deep-rgb: 7 43 80;
+  --text-rgb: 41 75 107;
+
+  /* ===================================================
+     GRADIENTS
+  =================================================== */
 
   --gradient-text: linear-gradient(
     90deg,
-    #09637e 0%,
-    #0b7d97 48%,
-    #98ded9 100%
+    #0b3f70 0%,
+    #145da0 35%,
+    #1f6fd1 68%,
+    #4ea3f1 100%
   );
 
   --gradient-button: linear-gradient(
     135deg,
-    #09637e 0%,
-    #0b7d97 58%,
-    #98ded9 145%
+    #0b3f70 0%,
+    #145da0 34%,
+    #1f6fd1 68%,
+    #4ea3f1 115%
+  );
+
+  --gradient-button-bright: linear-gradient(
+    135deg,
+    #145da0 0%,
+    #1f6fd1 48%,
+    #4ea3f1 100%
   );
 
   --gradient-soft: linear-gradient(
     135deg,
-    #f6f6f6 0%,
-    rgba(199, 255, 216, 0.52) 55%,
+    #ffffff 0%,
+    #f3f8ff 46%,
+    #e8f3ff 100%
+  );
+
+  --gradient-section: linear-gradient(
+    135deg,
+    #eef5ff 0%,
+    #f8fbff 50%,
     #ffffff 100%
   );
 
   --gradient-page: linear-gradient(
     180deg,
-    #f6f6f6 0%,
-    #f7fcfa 42%,
+    #f6f9ff 0%,
+    #f3f8ff 38%,
     #ffffff 100%
   );
 
   --gradient-dark: linear-gradient(
     135deg,
-    #064c61 0%,
-    #09637e 58%,
-    #0b7d97 110%
+    #072b50 0%,
+    #0b3f70 42%,
+    #145da0 73%,
+    #1f6fd1 115%
   );
+
+  --gradient-deep: linear-gradient(
+    135deg,
+    #041a30 0%,
+    #072b50 42%,
+    #0b3f70 100%
+  );
+
+  /* Shadows */
+  --shadow-soft: 0 16px 45px rgba(11, 63, 112, 0.08);
+  --shadow-card: 0 20px 55px rgba(11, 63, 112, 0.1);
+  --shadow-button: 0 14px 30px rgba(31, 111, 209, 0.25);
+  --shadow-blue: 0 24px 65px rgba(31, 111, 209, 0.14);
 }
+
+/* =====================================================
+   RESET
+===================================================== */
 
 * {
   box-sizing: border-box;
@@ -76,7 +133,20 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--gradient-page);
+
+  background:
+    radial-gradient(
+      circle at 8% 8%,
+      rgba(78, 163, 241, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 92% 20%,
+      rgba(169, 213, 255, 0.12),
+      transparent 30%
+    ),
+    var(--gradient-page);
+
   color: var(--body-text);
 }
 
@@ -98,13 +168,18 @@ select {
   font: inherit;
 }
 
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
 ::selection {
-  background: rgba(152, 222, 217, 0.55);
-  color: var(--dark);
+  background: rgba(78, 163, 241, 0.3);
+  color: var(--deep);
 }
 
 /* =====================================================
-   THEME HELPERS
+   BRAND TEXT
 ===================================================== */
 
 .brand-gradient-text {
@@ -114,34 +189,187 @@ select {
   color: transparent;
 }
 
+/* =====================================================
+   PREMIUM BUTTON
+===================================================== */
+
 .brand-button {
+  position: relative;
+  overflow: hidden;
+
   background: var(--gradient-button);
   color: #ffffff;
+
+  border: 1px solid rgba(169, 213, 255, 0.18);
+
+  box-shadow:
+    0 14px 30px rgba(31, 111, 209, 0.25),
+    0 0 24px rgba(78, 163, 241, 0.08);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    filter 0.3s ease;
 }
 
 .brand-button:hover {
-  filter: brightness(1.05);
+  transform: translateY(-3px);
+  filter: brightness(1.08);
+
+  box-shadow:
+    0 20px 42px rgba(31, 111, 209, 0.32),
+    0 0 34px rgba(78, 163, 241, 0.15);
 }
 
-.brand-soft-card {
-  background: linear-gradient(
-    135deg,
-    #ffffff 0%,
-    rgba(199, 255, 216, 0.46) 100%
-  );
+.brand-button:active {
+  transform: translateY(0);
 }
+
+/* =====================================================
+   PREMIUM CARDS
+===================================================== */
+
+.brand-soft-card {
+  background: var(--gradient-soft);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+}
+
+.brand-blue-card {
+  background: linear-gradient(
+    145deg,
+    #ffffff 0%,
+    #f5f9ff 52%,
+    #eaf4ff 100%
+  );
+
+  border: 1px solid var(--border);
+
+  box-shadow:
+    0 16px 42px rgba(11, 63, 112, 0.07);
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.brand-blue-card:hover {
+  transform: translateY(-6px);
+
+  border-color: var(--border-strong);
+
+  box-shadow:
+    0 24px 60px rgba(11, 63, 112, 0.13),
+    0 0 35px rgba(78, 163, 241, 0.07);
+}
+
+/* =====================================================
+   SECTION HELPERS
+===================================================== */
+
+.brand-page-background {
+  background: var(--gradient-page);
+}
+
+.brand-section-background {
+  background:
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(78, 163, 241, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 88% 78%,
+      rgba(169, 213, 255, 0.14),
+      transparent 30%
+    ),
+    var(--gradient-section);
+}
+
+.brand-dark-section {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(78, 163, 241, 0.22),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 88% 70%,
+      rgba(169, 213, 255, 0.12),
+      transparent 30%
+    ),
+    var(--gradient-dark);
+
+  color: var(--on-dark);
+}
+
+.brand-deep-section {
+  background: var(--gradient-deep);
+  color: var(--on-dark);
+}
+
+.brand-glass {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(31, 111, 209, 0.12);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* =====================================================
+   BRAND LINE
+===================================================== */
 
 .brand-line {
   background: linear-gradient(
     90deg,
-    #09637e 0%,
-    #98ded9 60%,
-    #c7ffd8 100%
+    transparent 0%,
+    #0b3f70 14%,
+    #1f6fd1 48%,
+    #4ea3f1 74%,
+    transparent 100%
   );
 }
 
 /* =====================================================
-   SOFT ANIMATIONS
+   GRID
+===================================================== */
+
+.brand-grid {
+  background-image:
+    linear-gradient(
+      rgba(31, 111, 209, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(31, 111, 209, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 42px 42px;
+}
+
+/* =====================================================
+   BLUE GLOWS
+===================================================== */
+
+.brand-glow {
+  background: rgba(78, 163, 241, 0.18);
+  filter: blur(70px);
+}
+
+.brand-glow-soft {
+  background: rgba(169, 213, 255, 0.2);
+  filter: blur(85px);
+}
+
+/* =====================================================
+   ANIMATIONS
 ===================================================== */
 
 @keyframes floatSoft {
@@ -149,8 +377,9 @@ select {
   100% {
     transform: translate3d(0, 0, 0);
   }
+
   50% {
-    transform: translate3d(0, -10px, 0);
+    transform: translate3d(0, -12px, 0);
   }
 }
 
@@ -159,18 +388,43 @@ select {
   100% {
     transform: translate3d(0, 0, 0) scale(1);
   }
+
   50% {
-    transform: translate3d(10px, -12px, 0) scale(1.04);
+    transform: translate3d(12px, -14px, 0) scale(1.04);
   }
 }
 
 @keyframes pulseSoft {
   0%,
   100% {
-    opacity: 0.35;
+    opacity: 0.28;
   }
+
   50% {
-    opacity: 0.7;
+    opacity: 0.65;
+  }
+}
+
+@keyframes blueGlowPulse {
+  0%,
+  100% {
+    opacity: 0.22;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.48;
+    transform: scale(1.07);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-160%) skewX(-18deg);
+  }
+
+  100% {
+    transform: translateX(260%) skewX(-18deg);
   }
 }
 
@@ -186,167 +440,216 @@ select {
   animation: pulseSoft 5s ease-in-out infinite;
 }
 
+.animate-blue-glow {
+  animation: blueGlowPulse 7s ease-in-out infinite;
+}
+
 /* =====================================================
-   PROFESSIONAL TEXT MAPPING
-   Ye sab description / info / paragraph text ko fix karega.
+   TEXT HIERARCHY
 ===================================================== */
 
-/* Main headings */
 .text-slate-900,
 .text-slate-800 {
   color: var(--heading-text) !important;
 }
 
-/* Strong body / sub-head / chips */
 .text-slate-700 {
   color: var(--body-strong) !important;
 }
 
-/* Paragraphs / descriptions */
 .text-slate-600 {
   color: var(--body-text) !important;
 }
 
-/* Muted labels / helper text */
 .text-slate-500,
 .text-slate-400 {
   color: var(--muted-text) !important;
 }
 
-/* White text should stay white */
 .text-white {
   color: #ffffff !important;
 }
 
-/* Dark section text hierarchy */
 .text-slate-300 {
   color: var(--on-dark-muted) !important;
 }
 
 .text-slate-200,
 .text-slate-100 {
-  color: var(--on-dark) !important;
-}
-
-/* Blue text classes used in current components */
-.text-blue-700,
-.text-blue-800,
-.text-cyan-700,
-.text-sky-700 {
-  color: var(--heading-text) !important;
-}
-
-.text-blue-300,
-.text-blue-200 {
-  color: rgba(255, 255, 255, 0.82) !important;
-}
-
-.text-cyan-100,
-.text-cyan-200,
-.text-sky-200 {
-  color: rgba(255, 255, 255, 0.92) !important;
-}
-
-.text-blue-100,
-.text-cyan-50,
-.text-sky-50 {
-  color: #ffffff !important;
+  color: var(--on-dark-soft) !important;
 }
 
 /* =====================================================
-   BACKGROUND / BORDER / GRADIENT OVERRIDES
-   Green cast ko reduce karke cleaner professional look deta hai.
+   BLUE / CYAN / SKY TEXT NORMALIZATION
 ===================================================== */
 
-/* Solid backgrounds */
+.text-blue-950,
+.text-blue-900,
+.text-blue-800 {
+  color: var(--deep) !important;
+}
+
+.text-blue-700,
+.text-cyan-700,
+.text-sky-700 {
+  color: var(--dark) !important;
+}
+
+.text-blue-600,
+.text-cyan-600,
+.text-sky-600 {
+  color: var(--primary) !important;
+}
+
+.text-blue-500,
+.text-cyan-500,
+.text-sky-500 {
+  color: #3187df !important;
+}
+
+.text-blue-400,
+.text-cyan-400,
+.text-sky-400 {
+  color: var(--primary-light) !important;
+}
+
+.text-blue-300,
+.text-cyan-300,
+.text-sky-300 {
+  color: #72b9f5 !important;
+}
+
+.text-blue-200,
+.text-cyan-200,
+.text-sky-200 {
+  color: #a9d5ff !important;
+}
+
+.text-blue-100,
+.text-cyan-100,
+.text-sky-100 {
+  color: #d8eaff !important;
+}
+
+/* =====================================================
+   SOLID BACKGROUNDS
+===================================================== */
+
+.bg-blue-950,
+.bg-slate-950 {
+  background-color: var(--deep) !important;
+}
+
+.bg-blue-900,
+.bg-blue-800 {
+  background-color: #0a365f !important;
+}
+
 .bg-blue-700,
-.bg-blue-800,
 .bg-cyan-700,
 .bg-sky-700 {
   background-color: var(--dark) !important;
 }
 
 .bg-blue-600,
-.bg-blue-500,
 .bg-cyan-600,
-.bg-cyan-500,
-.bg-sky-500 {
+.bg-sky-600 {
   background-color: var(--primary) !important;
 }
 
-.bg-blue-950,
-.bg-slate-950 {
-  background-color: #064c61 !important;
+.bg-blue-500,
+.bg-cyan-500,
+.bg-sky-500 {
+  background-color: #3187df !important;
+}
+
+.bg-blue-400,
+.bg-cyan-400,
+.bg-sky-400 {
+  background-color: var(--primary-light) !important;
 }
 
 .bg-blue-50,
 .bg-cyan-50,
 .bg-sky-50 {
-  background-color: #f4fbfa !important;
+  background-color: #f3f8ff !important;
 }
 
 .bg-blue-100,
 .bg-cyan-100,
 .bg-sky-100 {
-  background-color: rgba(152, 222, 217, 0.18) !important;
+  background-color: #e8f3ff !important;
 }
 
-/* Soft opacity backgrounds */
-[class~='bg-blue-100/70'],
-[class~='bg-blue-100/60'],
-[class~='bg-blue-100/55'],
-[class~='bg-blue-100/50'],
-[class~='bg-blue-100/40'] {
-  background-color: rgba(152, 222, 217, 0.18) !important;
+.bg-blue-200,
+.bg-cyan-200,
+.bg-sky-200 {
+  background-color: #d8eaff !important;
 }
 
-[class~='bg-cyan-100/60'],
-[class~='bg-cyan-100/50'],
-[class~='bg-cyan-100/40'],
-[class~='bg-sky-100/40'],
-[class~='bg-sky-100/35'],
-[class~='bg-sky-100/30'] {
-  background-color: rgba(199, 255, 216, 0.18) !important;
+/* =====================================================
+   OPACITY BACKGROUNDS
+===================================================== */
+
+[class~="bg-blue-100/70"],
+[class~="bg-blue-100/60"],
+[class~="bg-blue-100/55"],
+[class~="bg-blue-100/50"],
+[class~="bg-blue-100/40"] {
+  background-color: rgba(169, 213, 255, 0.18) !important;
 }
 
-[class~='bg-cyan-200/45'],
-[class~='bg-cyan-200/40'],
-[class~='bg-cyan-200/35'],
-[class~='bg-cyan-200/30'] {
-  background-color: rgba(152, 222, 217, 0.22) !important;
+[class~="bg-cyan-100/60"],
+[class~="bg-cyan-100/50"],
+[class~="bg-cyan-100/40"],
+[class~="bg-sky-100/40"],
+[class~="bg-sky-100/35"],
+[class~="bg-sky-100/30"] {
+  background-color: rgba(169, 213, 255, 0.16) !important;
 }
 
-[class~='bg-blue-200/45'],
-[class~='bg-blue-200/40'],
-[class~='bg-blue-200/35'],
-[class~='bg-blue-200/30'],
-[class~='bg-blue-200/25'] {
-  background-color: rgba(9, 99, 126, 0.10) !important;
+[class~="bg-blue-200/45"],
+[class~="bg-blue-200/40"],
+[class~="bg-blue-200/35"],
+[class~="bg-blue-200/30"],
+[class~="bg-blue-200/25"] {
+  background-color: rgba(78, 163, 241, 0.13) !important;
 }
 
-[class~='bg-cyan-400/30'],
-[class~='bg-cyan-400/25'],
-[class~='bg-cyan-400/20'],
-[class~='bg-cyan-400/18'],
-[class~='bg-cyan-400/16'],
-[class~='bg-cyan-400/14'],
-[class~='bg-cyan-400/10'] {
-  background-color: rgba(152, 222, 217, 0.24) !important;
+[class~="bg-cyan-200/45"],
+[class~="bg-cyan-200/40"],
+[class~="bg-cyan-200/35"],
+[class~="bg-cyan-200/30"] {
+  background-color: rgba(78, 163, 241, 0.14) !important;
 }
 
-[class~='bg-blue-500/35'],
-[class~='bg-blue-500/30'],
-[class~='bg-blue-500/25'],
-[class~='bg-blue-500/20'],
-[class~='bg-blue-500/18'],
-[class~='bg-blue-500/16'],
-[class~='bg-blue-500/15'],
-[class~='bg-blue-500/14'],
-[class~='bg-blue-500/10'] {
-  background-color: rgba(9, 99, 126, 0.14) !important;
+[class~="bg-cyan-400/30"],
+[class~="bg-cyan-400/25"],
+[class~="bg-cyan-400/20"],
+[class~="bg-cyan-400/18"],
+[class~="bg-cyan-400/16"],
+[class~="bg-cyan-400/14"],
+[class~="bg-cyan-400/10"] {
+  background-color: rgba(78, 163, 241, 0.17) !important;
 }
 
-/* Borders */
+[class~="bg-blue-500/35"],
+[class~="bg-blue-500/30"],
+[class~="bg-blue-500/25"],
+[class~="bg-blue-500/20"],
+[class~="bg-blue-500/18"],
+[class~="bg-blue-500/16"],
+[class~="bg-blue-500/15"],
+[class~="bg-blue-500/14"],
+[class~="bg-blue-500/10"] {
+  background-color: rgba(31, 111, 209, 0.16) !important;
+}
+
+/* =====================================================
+   BORDERS
+===================================================== */
+
+.border-blue-50,
 .border-blue-100,
 .border-blue-200,
 .border-cyan-100,
@@ -356,59 +659,235 @@ select {
   border-color: var(--border) !important;
 }
 
+.border-blue-300,
+.border-cyan-300,
+.border-sky-300 {
+  border-color: rgba(78, 163, 241, 0.3) !important;
+}
+
+.border-blue-500,
+.border-blue-600,
 .border-blue-700,
 .border-cyan-500,
-.border-sky-500 {
-  border-color: var(--dark) !important;
+.border-cyan-600,
+.border-cyan-700,
+.border-sky-500,
+.border-sky-600,
+.border-sky-700 {
+  border-color: var(--primary) !important;
 }
 
-/* Rings */
+/* =====================================================
+   RINGS
+===================================================== */
+
+.ring-blue-50,
 .ring-blue-100,
+.ring-blue-200,
 .ring-cyan-100,
-.ring-sky-100 {
-  --tw-ring-color: var(--border) !important;
+.ring-cyan-200,
+.ring-sky-100,
+.ring-sky-200 {
+  --tw-ring-color: rgba(31, 111, 209, 0.16) !important;
 }
 
-/* Gradient FROM */
-.from-blue-700,
-.from-blue-600,
-.from-blue-500,
-.from-cyan-500,
-.from-cyan-400,
-.from-sky-500,
-.from-sky-400 {
-  --tw-gradient-from: var(--dark) var(--tw-gradient-from-position) !important;
-  --tw-gradient-to: rgba(9, 99, 126, 0) var(--tw-gradient-to-position) !important;
+.ring-blue-500,
+.ring-cyan-500,
+.ring-sky-500 {
+  --tw-ring-color: rgba(31, 111, 209, 0.38) !important;
+}
+
+/* =====================================================
+   GRADIENT FROM
+===================================================== */
+
+.from-blue-950,
+.from-blue-900 {
+  --tw-gradient-from: #072b50 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(7, 43, 80, 0) var(--tw-gradient-to-position) !important;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
 }
 
-/* Gradient VIA */
+.from-blue-800,
+.from-blue-700,
+.from-cyan-700,
+.from-sky-700 {
+  --tw-gradient-from: #0b3f70 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(11, 63, 112, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.from-blue-600,
+.from-blue-500,
+.from-cyan-600,
+.from-cyan-500,
+.from-sky-600,
+.from-sky-500 {
+  --tw-gradient-from: #1f6fd1 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(31, 111, 209, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.from-blue-400,
+.from-cyan-400,
+.from-sky-400 {
+  --tw-gradient-from: #4ea3f1 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(78, 163, 241, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+/* =====================================================
+   GRADIENT VIA
+===================================================== */
+
+.via-blue-900,
+.via-blue-800 {
+  --tw-gradient-via: #0b3f70 var(--tw-gradient-via-position) !important;
+  --tw-gradient-to: rgba(11, 63, 112, 0) var(--tw-gradient-to-position) !important;
+
+  --tw-gradient-stops:
+    var(--tw-gradient-from),
+    var(--tw-gradient-via),
+    var(--tw-gradient-to) !important;
+}
+
 .via-blue-700,
 .via-blue-600,
+.via-cyan-600,
 .via-cyan-500,
+.via-sky-600,
+.via-sky-500 {
+  --tw-gradient-via: #1f6fd1 var(--tw-gradient-via-position) !important;
+  --tw-gradient-to: rgba(31, 111, 209, 0) var(--tw-gradient-to-position) !important;
+
+  --tw-gradient-stops:
+    var(--tw-gradient-from),
+    var(--tw-gradient-via),
+    var(--tw-gradient-to) !important;
+}
+
+.via-blue-500,
 .via-cyan-400,
 .via-sky-400,
 .via-sky-300 {
-  --tw-gradient-via: var(--primary) var(--tw-gradient-via-position) !important;
-  --tw-gradient-to: rgba(152, 222, 217, 0) var(--tw-gradient-to-position) !important;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to) !important;
+  --tw-gradient-via: #4ea3f1 var(--tw-gradient-via-position) !important;
+  --tw-gradient-to: rgba(78, 163, 241, 0) var(--tw-gradient-to-position) !important;
+
+  --tw-gradient-stops:
+    var(--tw-gradient-from),
+    var(--tw-gradient-via),
+    var(--tw-gradient-to) !important;
 }
 
-/* Gradient TO */
-.to-cyan-500,
-.to-cyan-400,
-.to-sky-300,
-.to-sky-200 {
-  --tw-gradient-to: var(--soft-accent) var(--tw-gradient-to-position) !important;
-}
+/* =====================================================
+   GRADIENT TO
+===================================================== */
 
 .to-blue-950,
 .to-blue-900,
+.to-slate-950,
 .to-slate-900 {
-  --tw-gradient-to: #064c61 var(--tw-gradient-to-position) !important;
+  --tw-gradient-to: #072b50 var(--tw-gradient-to-position) !important;
 }
 
-/* Old hardcoded blue section bg */
+.to-blue-800,
+.to-blue-700 {
+  --tw-gradient-to: #0b3f70 var(--tw-gradient-to-position) !important;
+}
+
+.to-blue-600,
+.to-blue-500,
+.to-cyan-600,
+.to-cyan-500,
+.to-sky-600,
+.to-sky-500 {
+  --tw-gradient-to: #1f6fd1 var(--tw-gradient-to-position) !important;
+}
+
+.to-blue-400,
+.to-cyan-400,
+.to-sky-400 {
+  --tw-gradient-to: #4ea3f1 var(--tw-gradient-to-position) !important;
+}
+
+.to-blue-300,
+.to-cyan-300,
+.to-sky-300 {
+  --tw-gradient-to: #72b9f5 var(--tw-gradient-to-position) !important;
+}
+
+.to-blue-200,
+.to-cyan-200,
+.to-sky-200 {
+  --tw-gradient-to: #a9d5ff var(--tw-gradient-to-position) !important;
+}
+
+/* =====================================================
+   OLD HARDCODED BACKGROUNDS
+===================================================== */
+
 .bg-\[\#eef4ff\] {
-  background-color: #f4fbfa !important;
+  background-color: #eef5ff !important;
+}
+
+.bg-\[\#f4fbfa\] {
+  background-color: #f3f8ff !important;
+}
+
+.bg-\[\#f6f6f6\] {
+  background-color: #f6f9ff !important;
+}
+
+/* =====================================================
+   FORM ELEMENTS
+===================================================== */
+
+input,
+textarea,
+select {
+  color: var(--body-strong);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted-text);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline-color: rgba(31, 111, 209, 0.34);
+}
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eef5ff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    #0b3f70,
+    #1f6fd1,
+    #4ea3f1
+  );
+
+  border-radius: 999px;
+  border: 2px solid #eef5ff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    #072b50,
+    #145da0,
+    #3187df
+  );
 }
