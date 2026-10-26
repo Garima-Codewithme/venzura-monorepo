@@ -1,66 +1,88 @@
 export const dynamic = 'force-dynamic'
-import Image from 'next/image'
-import Link from 'next/link'
+
 import { notFound } from 'next/navigation'
 import { client } from '@/lib/sanity'
-import { urlFor } from '@/lib/image'
-import type { Metadata } from 'next'
+import AdaptiveCatalogCard from '@/components/products/AdaptiveCatalogCard'
 
-const CATEGORY_BY_SLUG_QUERY = `
-  *[_type == "category" && slug.current == $categorySlug][0]{
+const CATEGORY_PAGE_QUERY = `
+{
+  "category": *[_type == "category" && slug.current == $categorySlug][0]{
     _id,
     title,
-    "slug": slug.current,
     description,
-    image
-  }
-`
+    image,
+    "slug": slug.current,
+    "imageAspectRatio": image.asset->metadata.dimensions.aspectRatio,
+    "imagePalette": image.asset->metadata.palette
+  },
 
-const SUBCATEGORIES_QUERY = `
-  *[_type == "subcategory" && category->slug.current == $categorySlug]
-  | order(order asc, title asc){
+  "subcategories": *[
+    _type == "subcategory" &&
+    category->slug.current == $categorySlug
+  ] | order(order asc, title asc){
     _id,
     title,
-    "slug": slug.current,
     description,
-    image
-  }
-`
+    image,
+    "slug": slug.current,
+    "imageAspectRatio": image.asset->metadata.dimensions.aspectRatio,
+    "imagePalette": image.asset->metadata.palette
+  },
 
-const PRODUCTS_WITHOUT_SUBCATEGORY_QUERY = `
-  *[
+  "products": *[
     _type == "product" &&
     category->slug.current == $categorySlug &&
     !defined(subcategory)
-  ]
-  | order(name asc){
+  ] | order(featured desc, name asc){
     _id,
     name,
-    "slug": slug.current,
     shortDescription,
     dosageForm,
     packaging,
-    image
+    image,
+    "slug": slug.current,
+    "imageAspectRatio": image.asset->metadata.dimensions.aspectRatio,
+    "imagePalette": image.asset->metadata.palette
   }
+}
 `
 
-type Category = {
+type SanityPaletteSwatch = {
+  background?: string
+  foreground?: string
+}
+
+type SanityImagePalette = {
+  dominant?: SanityPaletteSwatch
+  vibrant?: SanityPaletteSwatch
+  muted?: SanityPaletteSwatch
+  lightVibrant?: SanityPaletteSwatch
+  darkVibrant?: SanityPaletteSwatch
+  lightMuted?: SanityPaletteSwatch
+  darkMuted?: SanityPaletteSwatch
+}
+
+type CategoryData = {
   _id: string
   title: string
   slug: string
   description?: string
   image?: unknown
+  imageAspectRatio?: number
+  imagePalette?: SanityImagePalette
 }
 
-type Subcategory = {
+type SubcategoryData = {
   _id: string
   title: string
   slug: string
   description?: string
   image?: unknown
+  imageAspectRatio?: number
+  imagePalette?: SanityImagePalette
 }
 
-type Product = {
+type ProductData = {
   _id: string
   name: string
   slug: string
@@ -68,44 +90,39 @@ type Product = {
   dosageForm?: string
   packaging?: string
   image?: unknown
+  imageAspectRatio?: number
+  imagePalette?: SanityImagePalette
 }
 
-export async function generateStaticParams() {
-  const categories: { slug: string }[] = await client.fetch(`
-    *[_type == "category" && defined(slug.current)][]{
-      "slug": slug.current
+type CategoryPageResponse = {
+  category: CategoryData | null
+  subcategories: SubcategoryData[]
+  products: ProductData[]
+}
+
+async function getCategoryPageData(
+  categorySlug: string
+): Promise<CategoryPageResponse | null> {
+  try {
+    const data = await client.fetch<CategoryPageResponse>(
+      CATEGORY_PAGE_QUERY,
+      { categorySlug }
+    )
+
+    if (!data?.category) {
+      return null
     }
-  `)
 
-  return categories.map((item) => ({
-    categorySlug: item.slug,
-  }))
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ categorySlug: string }>
-}): Promise<Metadata> {
-  const { categorySlug } = await params
-
-  const category = await client.fetch(
-    `*[_type == "category" && slug.current == $categorySlug][0]{
-      title,
-      description
-    }`,
-    { categorySlug }
-  )
-
-  if (!category) {
     return {
-      title: 'Category Not Found',
+      category: data.category,
+      subcategories: Array.isArray(data.subcategories)
+        ? data.subcategories
+        : [],
+      products: Array.isArray(data.products) ? data.products : [],
     }
-  }
-
-  return {
-    title: category.title,
-    description: category.description || `Explore ${category.title} products.`,
+  } catch (error) {
+    console.error('Category page fetch error:', error)
+    return null
   }
 }
 
@@ -115,136 +132,99 @@ export default async function CategoryPage({
   params: Promise<{ categorySlug: string }>
 }) {
   const { categorySlug } = await params
+  const data = await getCategoryPageData(categorySlug)
 
-  const category: Category | null = await client.fetch(CATEGORY_BY_SLUG_QUERY, {
-    categorySlug,
-  })
+  if (!data || !data.category) {
+    notFound()
+  }
 
-  if (!category) notFound()
-
-  const subcategories: Subcategory[] = await client.fetch(SUBCATEGORIES_QUERY, {
-    categorySlug,
-  })
-
-  const directProducts: Product[] = await client.fetch(
-    PRODUCTS_WITHOUT_SUBCATEGORY_QUERY,
-    { categorySlug }
-  )
+  const { category, subcategories, products } = data
+  const hasSubcategories = subcategories.length > 0
 
   return (
-    <main className="min-h-screen bg-white px-4 py-16 md:px-8 lg:px-16">
-      <div className="mx-auto max-w-7xl">
-        <Link
-          href="/products"
-          className="inline-flex text-sm font-medium text-blue-700 hover:text-blue-800"
-        >
-          ← Back to Categories
-        </Link>
+    <main
+      className="relative min-h-screen overflow-hidden px-4 py-14 md:px-8 lg:px-16 lg:py-24"
+      style={{
+        background: `
+          radial-gradient(circle at 8% 10%, rgba(78,163,241,0.16) 0%, transparent 30%),
+          radial-gradient(circle at 92% 20%, rgba(31,111,209,0.08) 0%, transparent 28%),
+          linear-gradient(180deg, #ffffff 0%, #f7fbff 34%, #eef6ff 70%, #ffffff 100%)
+        `,
+      }}
+    >
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="absolute -left-28 top-20 h-[360px] w-[360px] rounded-full blur-[140px]"
+          style={{ background: 'rgba(78,163,241,0.12)' }}
+        />
+        <div
+          className="absolute right-[-6rem] top-[24rem] h-[380px] w-[380px] rounded-full blur-[150px]"
+          style={{ background: 'rgba(31,111,209,0.08)' }}
+        />
+      </div>
 
-        <div className="mt-6 mb-10">
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="mb-12 max-w-4xl">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">
-            Category
+            Explore {category.title}
           </p>
-          <h1 className="mt-3 text-3xl font-bold text-slate-900 md:text-5xl">
+
+          <h1 className="mt-4 text-3xl font-bold text-slate-900 md:text-5xl">
             {category.title}
           </h1>
+
           <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
-            {category.description || 'No description available.'}
+            {category.description ||
+              `Browse our ${category.title} portfolio crafted for reliable healthcare and pharmaceutical requirements.`}
           </p>
         </div>
 
-        {subcategories.length > 0 ? (
-          <>
-            <h2 className="mb-6 text-2xl font-semibold text-slate-900">
-              Subcategories
-            </h2>
-
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {subcategories.map((subcategory) => (
-                <Link
-                  key={subcategory._id}
-                  href={`/products/${category.slug}/${subcategory.slug}`}
-                  className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-                >
-                  <div className="relative h-48 overflow-hidden rounded-2xl bg-slate-100">
-                    {subcategory.image ? (
-                      <Image
-                        src={urlFor(subcategory.image).width(900).height(600).url()}
-                        alt={subcategory.title}
-                        fill
-                        className="object-cover transition duration-500 group-hover:scale-105"
-                      />
-                    ) : (
-                      <div className="flex h-full items-center justify-center text-sm text-slate-400">
-                        No Image
-                      </div>
-                    )}
-                  </div>
-
-                  <h3 className="mt-5 text-2xl font-semibold text-slate-900">
-                    {subcategory.title}
-                  </h3>
-
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
-                    {subcategory.description || 'No description available.'}
-                  </p>
-
-                  <p className="mt-5 text-sm font-semibold text-blue-700 transition group-hover:translate-x-1">
-                    Explore Subcategory →
-                  </p>
-                </Link>
-              ))}
-            </div>
-          </>
+        {hasSubcategories ? (
+          <div className="grid grid-cols-1 gap-7 md:grid-cols-2 xl:grid-cols-3">
+            {subcategories.map((item) => (
+              <AdaptiveCatalogCard
+                key={item._id}
+                href={`/products/${category.slug}/${item.slug}`}
+                title={item.title}
+                description={
+                  item.description ||
+                  `${item.title} under ${category.title} category.`
+                }
+                eyebrow={category.title}
+                image={item.image}
+                imageAspectRatio={item.imageAspectRatio}
+                imagePalette={item.imagePalette}
+                variant="catalog"
+                badge={category.title}
+                ctaLabel="Explore Product"
+              />
+            ))}
+          </div>
+        ) : products.length > 0 ? (
+          <div className="grid grid-cols-1 gap-7 md:grid-cols-2 xl:grid-cols-3">
+            {products.map((product) => (
+              <AdaptiveCatalogCard
+                key={product._id}
+                href={`/products/item/${product.slug}`}
+                title={product.name}
+                description={
+                  product.shortDescription ||
+                  `Explore ${product.name} from ${category.title}.`
+                }
+                eyebrow={category.title}
+                image={product.image}
+                imageAspectRatio={product.imageAspectRatio}
+                imagePalette={product.imagePalette}
+                variant="product"
+                badge={category.title}
+                ctaLabel="Explore Product"
+              />
+            ))}
+          </div>
         ) : (
-          <>
-            <h2 className="mb-6 text-2xl font-semibold text-slate-900">
-              Products
-            </h2>
-
-            {directProducts.length === 0 ? (
-              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 text-slate-600">
-                No products added in this category yet.
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-                {directProducts.map((product) => (
-                  <Link
-                    key={product._id}
-                    href={`/products/item/${product.slug}`}
-                    className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-                  >
-                    <div className="relative h-48 overflow-hidden rounded-2xl bg-slate-100">
-                      {product.image ? (
-                        <Image
-                          src={urlFor(product.image).width(900).height(600).url()}
-                          alt={product.name}
-                          fill
-                          className="object-cover transition duration-500 group-hover:scale-105"
-                        />
-                      ) : (
-                        <div className="flex h-full items-center justify-center text-sm text-slate-400">
-                          No Image
-                        </div>
-                      )}
-                    </div>
-
-                    <h3 className="mt-5 text-xl font-semibold text-slate-900">
-                      {product.name}
-                    </h3>
-
-                    <p className="mt-3 text-sm leading-6 text-slate-600">
-                      {product.shortDescription || 'No description available.'}
-                    </p>
-
-                    <p className="mt-5 text-sm font-semibold text-blue-700 transition group-hover:translate-x-1">
-                      View Product →
-                    </p>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </>
+          <div className="rounded-[28px] border border-slate-200 bg-white/80 p-8 text-slate-600 shadow-sm backdrop-blur-xl">
+            No items found in this category.
+          </div>
         )}
       </div>
     </main>

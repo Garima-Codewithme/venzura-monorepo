@@ -1,0 +1,1113 @@
+{
+  "generatedAt": "2026-10-26T20:09:49.957Z",
+  "category": {
+    "title": "Nutra Supplement",
+    "slug": "nutra-supplement"
+  },
+  "sourceFiles": [
+    "Drops _ Powders.xlsx",
+    "Effervescent Tablets.xlsx",
+    "Gummies.xlsx",
+    "Liquids.xlsx",
+    "Sachets.xlsx",
+    "Tablets.xlsx"
+  ],
+  "subcategories": [
+    {
+      "title": "Drops",
+      "slug": "drops",
+      "productCount": 6
+    },
+    {
+      "title": "Powders",
+      "slug": "powders",
+      "productCount": 4
+    },
+    {
+      "title": "Effervescent Tablets",
+      "slug": "effervescent-tablets",
+      "productCount": 10
+    },
+    {
+      "title": "Gummies",
+      "slug": "gummies",
+      "productCount": 10
+    },
+    {
+      "title": "Liquids",
+      "slug": "liquids",
+      "productCount": 10
+    },
+    {
+      "title": "Sachets",
+      "slug": "sachets",
+      "productCount": 10
+    },
+    {
+      "title": "Tablets",
+      "slug": "tablets",
+      "productCount": 10
+    }
+  ],
+  "products": [
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Drops",
+      "subcategorySlug": "drops",
+      "title": "Vitamin D3 Oral Drops",
+      "slug": "vitamin-d3-oral-drops",
+      "segment": "Bone Health",
+      "composition": [
+        "Cholecalciferol (Vitamin D3) 400 IU / 800 IU per ml"
+      ],
+      "sourceFile": "Drops _ Powders.xlsx",
+      "sourceNumber": 1
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Drops",
+      "subcategorySlug": "drops",
+      "title": "Vitamin D3 + K2 Oral Drops",
+      "slug": "vitamin-d3-k2-oral-drops",
+      "segment": "Bone & Immunity",
+      "composition": [
+        "Vitamin D3",
+        "Vitamin K2-7"
+      ],
+      "sourceFile": "Drops _ Powders.xlsx",
+      "sourceNumber": 2
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Drops",
+      "subcategorySlug": "drops",
+      "title": "Multivitamin Oral Drops",
+      "slug": "multivitamin-oral-drops",
+      "segment": "Pediatric Nutrition",
+      "composition": [
+        "Vitamin A",
+        "Vitamin B-Complex",
+        "Vitamin C",
+        "Vitamin D3",
+        "Vitamin E"
+      ],
+      "sourceFile": "Drops _ Powders.xlsx",
+      "sourceNumber": 3
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Drops",
+      "subcategorySlug": "drops",
+      "title": "Iron Oral Drops",
+      "slug": "iron-oral-drops",
+      "segment": "Iron Deficiency",
+      "composition": [
+        "Ferrous Bisglycinate",
+        "Folic Acid",
+        "Vitamin B12"
+      ],
+      "sourceFile": "Drops _ Powders.xlsx",
+      "sourceNumber": 4
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Drops",
+      "subcategorySlug": "drops",
+      "title": "Zinc Oral Drops",
+      "slug": "zinc-oral-drops",
+      "segment": "Immunity",
+      "composition": [
+        "Elemental Zinc"
+      ],
+      "sourceFile": "Drops _ Powders.xlsx",
+      "sourceNumber": 5
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Drops",
+      "subcategorySlug": "drops",
+      "title": "Calcium Oral Drops",
+      "slug": "calcium-oral-drops",
+      "segment": "Bone Growth",
+      "composition": [
+        "Calcium",
+        "Magnesium",
+        "Vitamin D3"
+      ],
+      "sourceFile": "Drops _ Powders.xlsx",
+      "sourceNumber": 6
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Powders",
+      "subcategorySlug": "powders",
+      "title": "Probiotic Powder",
+      "slug": "probiotic-powder",
+      "segment": "Gut Health",
+      "composition": [
+        "Lactobacillus Acidophilus",
+        "Lactobacillus Rhamnosus",
+        "Bifidobacterium Longum",
+        "Fructo-oligosaccharides"
+      ],
+      "sourceFile": "Drops _ Powders.xlsx",
+      "sourceNumber": 7
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Powders",
+      "subcategorySlug": "powders",
+      "title": "Electrolyte Powder",
+      "slug": "electrolyte-powder",
+      "segment": "Hydration",
+      "composition": [
+        "Sodium",
+        "Potassium",
+        "Magnesium",
+        "Chloride",
+        "Vitamin C"
+      ],
+      "sourceFile": "Drops _ Powders.xlsx",
+      "sourceNumber": 8
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Powders",
+      "subcategorySlug": "powders",
+      "title": "Protein Nutrition Powder",
+      "slug": "protein-nutrition-powder",
+      "segment": "Sports Nutrition",
+      "composition": [
+        "Whey Protein",
+        "Essential Amino Acids",
+        "Vitamins & Minerals"
+      ],
+      "sourceFile": "Drops _ Powders.xlsx",
+      "sourceNumber": 9
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Powders",
+      "subcategorySlug": "powders",
+      "title": "Collagen Beauty Powder",
+      "slug": "collagen-beauty-powder",
+      "segment": "Skin, Hair & Nails",
+      "composition": [
+        "Hydrolysed Marine Collagen",
+        "Hyaluronic Acid",
+        "Vitamin C",
+        "Biotin",
+        "Zinc"
+      ],
+      "sourceFile": "Drops _ Powders.xlsx",
+      "sourceNumber": 10
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Effervescent Tablets",
+      "subcategorySlug": "effervescent-tablets",
+      "title": "Natural Vitamin C + Zinc Effervescent Tablet",
+      "slug": "natural-vitamin-c-zinc-effervescent-tablet",
+      "segment": "Immunity",
+      "composition": [
+        "Phyllanthus Emblica Extract (Natural Vitamin C) (1000 mg)",
+        "Zinc Sulphate (10 mg)"
+      ],
+      "sourceFile": "Effervescent Tablets.xlsx",
+      "sourceNumber": 1
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Effervescent Tablets",
+      "subcategorySlug": "effervescent-tablets",
+      "title": "Electrolyte & Hydration Effervescent Tablet",
+      "slug": "electrolyte-and-hydration-effervescent-tablet",
+      "segment": "Hydration & Recovery",
+      "composition": [
+        "Elemental Sodium (180 mg)",
+        "Elemental Potassium (77 mg)",
+        "Elemental Magnesium (20 mg)",
+        "Elemental Calcium (12.5 mg)",
+        "Chloride (122.87 mg)",
+        "Vitamin C (37.5 mg)",
+        "Vitamin B12 (1 mcg)",
+        "Fructose (640 mg)"
+      ],
+      "sourceFile": "Effervescent Tablets.xlsx",
+      "sourceNumber": 2
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Effervescent Tablets",
+      "subcategorySlug": "effervescent-tablets",
+      "title": "Glutathione Effervescent Tablet",
+      "slug": "glutathione-effervescent-tablet",
+      "segment": "Skin Brightening & Antioxidant",
+      "composition": [
+        "L-Glutathione (500 mg)",
+        "Vitamin C (40 mg)"
+      ],
+      "sourceFile": "Effervescent Tablets.xlsx",
+      "sourceNumber": 3
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Effervescent Tablets",
+      "subcategorySlug": "effervescent-tablets",
+      "title": "Apple Cider Vinegar Effervescent Tablet",
+      "slug": "apple-cider-vinegar-effervescent-tablet",
+      "segment": "Weight Management",
+      "composition": [
+        "Apple Cider Vinegar (6% Acetic Acid) (500 mg)",
+        "Pomegranate Extract (100 mg)",
+        "Vitamin B6 (2 mg)",
+        "Vitamin B12 (1 mcg)"
+      ],
+      "sourceFile": "Effervescent Tablets.xlsx",
+      "sourceNumber": 4
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Effervescent Tablets",
+      "subcategorySlug": "effervescent-tablets",
+      "title": "L-Arginine Effervescent Tablet",
+      "slug": "l-arginine-effervescent-tablet",
+      "segment": "Men's Health & Fitness",
+      "composition": [
+        "L-Arginine (1000 mg)"
+      ],
+      "sourceFile": "Effervescent Tablets.xlsx",
+      "sourceNumber": 5
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Effervescent Tablets",
+      "subcategorySlug": "effervescent-tablets",
+      "title": "Calcium + Vitamin D2 Effervescent Tablet",
+      "slug": "calcium-vitamin-d2-effervescent-tablet",
+      "segment": "Bone & Joint Health",
+      "composition": [
+        "Elemental Calcium (500 mg)",
+        "Vitamin D2 (1000 IU)"
+      ],
+      "sourceFile": "Effervescent Tablets.xlsx",
+      "sourceNumber": 6
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Effervescent Tablets",
+      "subcategorySlug": "effervescent-tablets",
+      "title": "Digestive Enzyme Effervescent Tablet",
+      "slug": "digestive-enzyme-effervescent-tablet",
+      "segment": "Digestive Health",
+      "composition": [
+        "Alpha Galactosidase (100 mg)",
+        "Lipase (3 mg)",
+        "Protease (15 mg)",
+        "Lactase (5 mg)"
+      ],
+      "sourceFile": "Effervescent Tablets.xlsx",
+      "sourceNumber": 7
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Effervescent Tablets",
+      "subcategorySlug": "effervescent-tablets",
+      "title": "Gut Detox & Probiotic Effervescent Tablet",
+      "slug": "gut-detox-and-probiotic-effervescent-tablet",
+      "segment": "Gut Health & Detox",
+      "composition": [
+        "Psyllium Husk Extract (300 mg)",
+        "Lactobacillus Acidophilus (1 Billion CFU)",
+        "Aloe Vera Powder (50 mg)",
+        "Triphala Extract (50 mg)",
+        "Ginger Powder (50 mg)",
+        "Parsley Powder (50 mg)",
+        "Acai Berry Extract (20 mg)",
+        "Papain (20 mg)",
+        "Cinnamon Powder (10 mg)",
+        "Bromelain (5 mg)"
+      ],
+      "sourceFile": "Effervescent Tablets.xlsx",
+      "sourceNumber": 8
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Effervescent Tablets",
+      "subcategorySlug": "effervescent-tablets",
+      "title": "Multivitamin & Mineral Effervescent Tablet",
+      "slug": "multivitamin-and-mineral-effervescent-tablet",
+      "segment": "Daily Multivitamin",
+      "composition": [
+        "Vitamin A",
+        "Vitamin B-Complex",
+        "Vitamin C",
+        "Vitamin D2",
+        "Vitamin K2-7",
+        "Iron",
+        "Zinc",
+        "Magnesium",
+        "Calcium",
+        "Selenium",
+        "Chromium",
+        "Molybdenum",
+        "Beta Vulgaris Root Extract"
+      ],
+      "sourceFile": "Effervescent Tablets.xlsx",
+      "sourceNumber": 9
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Effervescent Tablets",
+      "subcategorySlug": "effervescent-tablets",
+      "title": "Energy & Recovery Effervescent Tablet",
+      "slug": "energy-and-recovery-effervescent-tablet",
+      "segment": "Energy & Performance",
+      "composition": [
+        "Vitamin B1",
+        "Vitamin B2",
+        "Vitamin B3",
+        "Vitamin B5",
+        "Vitamin B6",
+        "Vitamin B12",
+        "Vitamin C",
+        "Iron",
+        "Magnesium",
+        "Zinc",
+        "Calcium",
+        "Beta Vulgaris Root Extract"
+      ],
+      "sourceFile": "Effervescent Tablets.xlsx",
+      "sourceNumber": 10
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Gummies",
+      "subcategorySlug": "gummies",
+      "title": "Probiotic Gummy",
+      "slug": "probiotic-gummy",
+      "segment": "Gut Health",
+      "composition": [
+        "Bacillus Coagulans (1.5 Billion CFU)",
+        "Bacillus Subtilis (1.5 Billion CFU)"
+      ],
+      "sourceFile": "Gummies.xlsx",
+      "sourceNumber": 1
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Gummies",
+      "subcategorySlug": "gummies",
+      "title": "Vitamin C + Vitamin D + Zinc Gummy",
+      "slug": "vitamin-c-vitamin-d-zinc-gummy",
+      "segment": "Immunity",
+      "composition": [
+        "Vitamin C (100 mg)",
+        "Vitamin D",
+        "Zinc Citrate (7.5 mg)"
+      ],
+      "sourceFile": "Gummies.xlsx",
+      "sourceNumber": 2
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Gummies",
+      "subcategorySlug": "gummies",
+      "title": "Curcumin Gummy",
+      "slug": "curcumin-gummy",
+      "segment": "Joint Health & Immunity",
+      "composition": [
+        "Curcumin (130 mg)"
+      ],
+      "sourceFile": "Gummies.xlsx",
+      "sourceNumber": 3
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Gummies",
+      "subcategorySlug": "gummies",
+      "title": "Melatonin Gummy",
+      "slug": "melatonin-gummy",
+      "segment": "Sleep Support",
+      "composition": [
+        "Melatonin (5 mg)"
+      ],
+      "sourceFile": "Gummies.xlsx",
+      "sourceNumber": 4
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Gummies",
+      "subcategorySlug": "gummies",
+      "title": "Ashwagandha Gummy",
+      "slug": "ashwagandha-gummy",
+      "segment": "Stress Management",
+      "composition": [
+        "Withania Somnifera (Ashwagandha) (100 mg)"
+      ],
+      "sourceFile": "Gummies.xlsx",
+      "sourceNumber": 5
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Gummies",
+      "subcategorySlug": "gummies",
+      "title": "Eye Health Gummy",
+      "slug": "eye-health-gummy",
+      "segment": "Eye Care",
+      "composition": [
+        "Lutein (3 mg)",
+        "Zeaxanthin (0.7 mg)",
+        "Vitamin C (20 mg)",
+        "Vitamin E (5 mg)",
+        "Zinc (5 mg)"
+      ],
+      "sourceFile": "Gummies.xlsx",
+      "sourceNumber": 6
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Gummies",
+      "subcategorySlug": "gummies",
+      "title": "Vegan DHA Gummy",
+      "slug": "vegan-dha-gummy",
+      "segment": "Brain & Heart Health",
+      "composition": [
+        "Omega-3 Veg DHA (Algal DHA 10%) (50 mg)"
+      ],
+      "sourceFile": "Gummies.xlsx",
+      "sourceNumber": 7
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Gummies",
+      "subcategorySlug": "gummies",
+      "title": "Hair, Skin & Nails Gummy",
+      "slug": "hair-skin-and-nails-gummy",
+      "segment": "Beauty Nutrition",
+      "composition": [
+        "Biotin (40 mcg)",
+        "Vitamin C (11.25 mg)",
+        "Vitamin E (10 mg)",
+        "Inositol (2.5 mg)",
+        "Zinc Citrate (1 mg)",
+        "Vitamin B6 (0.25 mg)",
+        "Vitamin A Palmitate (300 mcg)",
+        "Folic Acid (250 mcg)",
+        "Iodine (21 mcg)",
+        "Vitamin B12 (1 mcg)"
+      ],
+      "sourceFile": "Gummies.xlsx",
+      "sourceNumber": 8
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Gummies",
+      "subcategorySlug": "gummies",
+      "title": "Vegan Collagen Booster Gummy",
+      "slug": "vegan-collagen-booster-gummy",
+      "segment": "Skin & Anti-Aging",
+      "composition": [
+        "Vitamin A",
+        "Vitamin C",
+        "Vitamin E",
+        "Folate",
+        "D-Biotin",
+        "Pantothenic Acid",
+        "Zinc",
+        "Vegan Collagen Booster Blend",
+        "Glycine",
+        "L-Lysine",
+        "L-Proline",
+        "Bamboo Silica",
+        "Grape Seed Extract",
+        "Amla Extract",
+        "Resveratrol"
+      ],
+      "sourceFile": "Gummies.xlsx",
+      "sourceNumber": 9
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Gummies",
+      "subcategorySlug": "gummies",
+      "title": "Women's Wellness Herbal Gummy",
+      "slug": "women-s-wellness-herbal-gummy",
+      "segment": "Women's Wellness",
+      "composition": [
+        "Asparagus Racemosus",
+        "Withania Somnifera",
+        "Tribulus Terrestris",
+        "Tinospora Cordifolia",
+        "Terminalia Chebula",
+        "Phyllanthus Emblica",
+        "Terminalia Bellirica"
+      ],
+      "sourceFile": "Gummies.xlsx",
+      "sourceNumber": 10
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Liquids",
+      "subcategorySlug": "liquids",
+      "title": "Liver Support Syrup",
+      "slug": "liver-support-syrup",
+      "segment": "Liver Health",
+      "composition": [
+        "L-Ornithine L-Aspartate",
+        "L-Lysine",
+        "Vitamin B-Complex"
+      ],
+      "sourceFile": "Liquids.xlsx",
+      "sourceNumber": 1
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Liquids",
+      "subcategorySlug": "liquids",
+      "title": "Multivitamin & Multimineral Syrup",
+      "slug": "multivitamin-and-multimineral-syrup",
+      "segment": "Daily Wellness",
+      "composition": [
+        "Vitamin A",
+        "Vitamin C",
+        "Vitamin D3",
+        "Vitamin E",
+        "Vitamin B-Complex",
+        "Zinc",
+        "Selenium",
+        "Iodine"
+      ],
+      "sourceFile": "Liquids.xlsx",
+      "sourceNumber": 2
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Liquids",
+      "subcategorySlug": "liquids",
+      "title": "Lycopene Antioxidant Syrup",
+      "slug": "lycopene-antioxidant-syrup",
+      "segment": "Antioxidant & Immunity",
+      "composition": [
+        "Lycopene",
+        "Vitamin A",
+        "Vitamin C",
+        "Vitamin E",
+        "Zinc",
+        "Selenium",
+        "Manganese"
+      ],
+      "sourceFile": "Liquids.xlsx",
+      "sourceNumber": 3
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Liquids",
+      "subcategorySlug": "liquids",
+      "title": "Gut Health Syrup",
+      "slug": "gut-health-syrup",
+      "segment": "Digestive Health",
+      "composition": [
+        "Lactulose",
+        "Wheat Dextrin",
+        "Fructo-oligosaccharides",
+        "Polydextrose"
+      ],
+      "sourceFile": "Liquids.xlsx",
+      "sourceNumber": 4
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Liquids",
+      "subcategorySlug": "liquids",
+      "title": "Potassium Citrate Syrup",
+      "slug": "potassium-citrate-syrup",
+      "segment": "Kidney & Urinary Health",
+      "composition": [
+        "Potassium Citrate",
+        "Magnesium Citrate",
+        "Pyridoxine HCl"
+      ],
+      "sourceFile": "Liquids.xlsx",
+      "sourceNumber": 5
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Liquids",
+      "subcategorySlug": "liquids",
+      "title": "Papaya Leaf Extract Syrup",
+      "slug": "papaya-leaf-extract-syrup",
+      "segment": "Immunity & Platelet Support",
+      "composition": [
+        "Carica Papaya",
+        "Tinospora Cordifolia",
+        "Ocimum Sanctum",
+        "Azadirachta Indica",
+        "Piper Nigrum"
+      ],
+      "sourceFile": "Liquids.xlsx",
+      "sourceNumber": 6
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Liquids",
+      "subcategorySlug": "liquids",
+      "title": "Digestive Syrup",
+      "slug": "digestive-syrup",
+      "segment": "Digestive Care",
+      "composition": [
+        "Cardamom Extract",
+        "Clove Extract",
+        "Anise Extract",
+        "Peppermint Extract",
+        "Sodium Bicarbonate"
+      ],
+      "sourceFile": "Liquids.xlsx",
+      "sourceNumber": 7
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Liquids",
+      "subcategorySlug": "liquids",
+      "title": "Calcium Syrup",
+      "slug": "calcium-syrup",
+      "segment": "Bone Health",
+      "composition": [
+        "Elemental Calcium",
+        "Magnesium",
+        "Zinc",
+        "Vitamin D3",
+        "Vitamin B12"
+      ],
+      "sourceFile": "Liquids.xlsx",
+      "sourceNumber": 8
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Liquids",
+      "subcategorySlug": "liquids",
+      "title": "Iron Tonic",
+      "slug": "iron-tonic",
+      "segment": "Hematinic",
+      "composition": [
+        "Ferrous Bisglycinate",
+        "Folic Acid",
+        "Vitamin B12",
+        "Zinc"
+      ],
+      "sourceFile": "Liquids.xlsx",
+      "sourceNumber": 9
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Liquids",
+      "subcategorySlug": "liquids",
+      "title": "Apple Cider Vinegar Syrup",
+      "slug": "apple-cider-vinegar-syrup",
+      "segment": "Weight Management",
+      "composition": [
+        "Apple Cider Vinegar",
+        "Garcinia Cambogia",
+        "Green Tea Extract",
+        "Chromium"
+      ],
+      "sourceFile": "Liquids.xlsx",
+      "sourceNumber": 10
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Sachets",
+      "subcategorySlug": "sachets",
+      "title": "PCOS/PCOD Sachet",
+      "slug": "pcos-pcod-sachet",
+      "segment": "Women's Health",
+      "composition": [
+        "Myo-Inositol (2000 mg)",
+        "D-Chiro Inositol (50 mg)",
+        "N-Acetyl Cysteine (600 mg)",
+        "L-Methylfolate (1 mg)",
+        "Vitamin D3 (1000 IU)"
+      ],
+      "sourceFile": "Sachets.xlsx",
+      "sourceNumber": 1
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Sachets",
+      "subcategorySlug": "sachets",
+      "title": "Collagen Beauty Sachet",
+      "slug": "collagen-beauty-sachet",
+      "segment": "Skin, Hair & Nails",
+      "composition": [
+        "Hydrolysed Marine Collagen Peptides",
+        "Vitamin C",
+        "Hyaluronic Acid",
+        "Biotin",
+        "Zinc"
+      ],
+      "sourceFile": "Sachets.xlsx",
+      "sourceNumber": 2
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Sachets",
+      "subcategorySlug": "sachets",
+      "title": "Glutathione Sachet",
+      "slug": "glutathione-sachet",
+      "segment": "Skin Brightening",
+      "composition": [
+        "L-Glutathione",
+        "Vitamin C",
+        "Alpha Lipoic Acid",
+        "Grape Seed Extract"
+      ],
+      "sourceFile": "Sachets.xlsx",
+      "sourceNumber": 3
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Sachets",
+      "subcategorySlug": "sachets",
+      "title": "Protein Sachet",
+      "slug": "protein-sachet",
+      "segment": "Sports Nutrition",
+      "composition": [
+        "Whey Protein Isolate",
+        "BCAA",
+        "L-Glutamine",
+        "Digestive Enzymes"
+      ],
+      "sourceFile": "Sachets.xlsx",
+      "sourceNumber": 4
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Sachets",
+      "subcategorySlug": "sachets",
+      "title": "Electrolyte Sachet",
+      "slug": "electrolyte-sachet",
+      "segment": "Hydration",
+      "composition": [
+        "Sodium",
+        "Potassium",
+        "Magnesium",
+        "Calcium",
+        "Vitamin C"
+      ],
+      "sourceFile": "Sachets.xlsx",
+      "sourceNumber": 5
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Sachets",
+      "subcategorySlug": "sachets",
+      "title": "Joint Care Sachet",
+      "slug": "joint-care-sachet",
+      "segment": "Bone & Joint Health",
+      "composition": [
+        "Collagen Peptides Type I, II, V & X",
+        "Chondroitin Sulphate",
+        "Hyaluronic Acid",
+        "Vitamin C"
+      ],
+      "sourceFile": "Sachets.xlsx",
+      "sourceNumber": 6
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Sachets",
+      "subcategorySlug": "sachets",
+      "title": "Liver Detox Sachet",
+      "slug": "liver-detox-sachet",
+      "segment": "Liver Care",
+      "composition": [
+        "L-Ornithine L-Aspartate",
+        "Silymarin",
+        "N-Acetyl Cysteine"
+      ],
+      "sourceFile": "Sachets.xlsx",
+      "sourceNumber": 7
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Sachets",
+      "subcategorySlug": "sachets",
+      "title": "Gut Health Sachet",
+      "slug": "gut-health-sachet",
+      "segment": "Digestive Health",
+      "composition": [
+        "Probiotics Blend",
+        "Prebiotics (FOS)",
+        "Digestive Enzymes"
+      ],
+      "sourceFile": "Sachets.xlsx",
+      "sourceNumber": 8
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Sachets",
+      "subcategorySlug": "sachets",
+      "title": "Immunity Sachet",
+      "slug": "immunity-sachet",
+      "segment": "Immunity",
+      "composition": [
+        "Vitamin C",
+        "Zinc",
+        "Vitamin D3",
+        "Elderberry Extract",
+        "Beta Glucan"
+      ],
+      "sourceFile": "Sachets.xlsx",
+      "sourceNumber": 9
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Sachets",
+      "subcategorySlug": "sachets",
+      "title": "Creatine Recovery Sachet",
+      "slug": "creatine-recovery-sachet",
+      "segment": "Sports Nutrition",
+      "composition": [
+        "Creatine Monohydrate",
+        "Electrolytes",
+        "Taurine",
+        "Vitamin B12"
+      ],
+      "sourceFile": "Sachets.xlsx",
+      "sourceNumber": 10
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Tablets",
+      "subcategorySlug": "tablets",
+      "title": "Multivitamin & Multimineral Tablet",
+      "slug": "multivitamin-and-multimineral-tablet",
+      "segment": "Daily Wellness",
+      "composition": [
+        "Vitamins A, B-Complex, C, D3 & E",
+        "Zinc",
+        "Magnesium",
+        "Iron",
+        "Selenium",
+        "Chromium"
+      ],
+      "sourceFile": "Tablets.xlsx",
+      "sourceNumber": 1
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Tablets",
+      "subcategorySlug": "tablets",
+      "title": "Calcium + Vitamin D3 + K2-7 Tablet",
+      "slug": "calcium-vitamin-d3-k2-7-tablet",
+      "segment": "Bone Health",
+      "composition": [
+        "Calcium Citrate",
+        "Vitamin D3",
+        "Vitamin K2-7",
+        "Magnesium",
+        "Zinc",
+        "Boron"
+      ],
+      "sourceFile": "Tablets.xlsx",
+      "sourceNumber": 2
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Tablets",
+      "subcategorySlug": "tablets",
+      "title": "Glutathione Skin Tablet",
+      "slug": "glutathione-skin-tablet",
+      "segment": "Skin Brightening",
+      "composition": [
+        "L-Glutathione",
+        "Vitamin C",
+        "Alpha Lipoic Acid",
+        "Grape Seed Extract"
+      ],
+      "sourceFile": "Tablets.xlsx",
+      "sourceNumber": 3
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Tablets",
+      "subcategorySlug": "tablets",
+      "title": "Joint Support Tablet",
+      "slug": "joint-support-tablet",
+      "segment": "Joint Health",
+      "composition": [
+        "Cissus Quadrangularis",
+        "Boswellia Serrata",
+        "Vitamin D3",
+        "Calcium",
+        "Vitamin K2-7"
+      ],
+      "sourceFile": "Tablets.xlsx",
+      "sourceNumber": 4
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Tablets",
+      "subcategorySlug": "tablets",
+      "title": "Women's PCOS Tablet",
+      "slug": "women-s-pcos-tablet",
+      "segment": "Women's Health",
+      "composition": [
+        "Myo-Inositol",
+        "D-Chiro Inositol",
+        "N-Acetyl Cysteine",
+        "L-Methylfolate",
+        "Vitamin D3"
+      ],
+      "sourceFile": "Tablets.xlsx",
+      "sourceNumber": 5
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Tablets",
+      "subcategorySlug": "tablets",
+      "title": "Liver Care Tablet",
+      "slug": "liver-care-tablet",
+      "segment": "Liver Support",
+      "composition": [
+        "L-Ornithine",
+        "Silymarin"
+      ],
+      "sourceFile": "Tablets.xlsx",
+      "sourceNumber": 6
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Tablets",
+      "subcategorySlug": "tablets",
+      "title": "Eye Health Tablet",
+      "slug": "eye-health-tablet",
+      "segment": "Eye Care",
+      "composition": [
+        "Lycopene",
+        "Lutein",
+        "Beta-Carotene",
+        "Bilberry Extract",
+        "Grape Seed Extract",
+        "Zinc",
+        "Selenium"
+      ],
+      "sourceFile": "Tablets.xlsx",
+      "sourceNumber": 7
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Tablets",
+      "subcategorySlug": "tablets",
+      "title": "Weight Management Tablet",
+      "slug": "weight-management-tablet",
+      "segment": "Weight Management",
+      "composition": [
+        "Garcinia Cambogia",
+        "Green Tea Extract",
+        "Ginger Extract",
+        "Piper Longum Extract"
+      ],
+      "sourceFile": "Tablets.xlsx",
+      "sourceNumber": 8
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Tablets",
+      "subcategorySlug": "tablets",
+      "title": "Probiotic Tablet",
+      "slug": "probiotic-tablet",
+      "segment": "Gut Health",
+      "composition": [
+        "Lactobacillus Acidophilus",
+        "Lactobacillus Rhamnosus",
+        "Bifidobacterium Longum",
+        "Saccharomyces Boulardii",
+        "Fructo-oligosaccharides"
+      ],
+      "sourceFile": "Tablets.xlsx",
+      "sourceNumber": 9
+    },
+    {
+      "mainCategory": "Nutra Supplement",
+      "mainCategorySlug": "nutra-supplement",
+      "subcategory": "Tablets",
+      "subcategorySlug": "tablets",
+      "title": "Curcumin Joint Tablet",
+      "slug": "curcumin-joint-tablet",
+      "segment": "Joint & Anti-inflammatory Support",
+      "composition": [
+        "Curcumin Extract (95%)",
+        "Boswellia Serrata Extract",
+        "Piperine"
+      ],
+      "sourceFile": "Tablets.xlsx",
+      "sourceNumber": 10
+    }
+  ],
+  "validation": {
+    "totalFiles": 6,
+    "totalSubcategories": 7,
+    "totalProducts": 60,
+    "duplicateProductSlugs": []
+  }
+}

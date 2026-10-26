@@ -1,54 +1,81 @@
 export const dynamic = 'force-dynamic'
-import Image from 'next/image'
-import Link from 'next/link'
+
 import { notFound } from 'next/navigation'
 import { client } from '@/lib/sanity'
-import { urlFor } from '@/lib/image'
+import AdaptiveCatalogCard from '@/components/products/AdaptiveCatalogCard'
 
 const SUBCATEGORY_PAGE_QUERY = `
-  *[
+{
+  "category": *[_type == "category" && slug.current == $categorySlug][0]{
+    _id,
+    title,
+    "slug": slug.current
+  },
+
+  "subcategory": *[
     _type == "subcategory" &&
     slug.current == $subcategorySlug &&
     category->slug.current == $categorySlug
   ][0]{
     _id,
     title,
-    "slug": slug.current,
     description,
     image,
-    "categoryTitle": category->title,
-    "categorySlug": category->slug.current
-  }
-`
+    "slug": slug.current,
+    "imageAspectRatio": image.asset->metadata.dimensions.aspectRatio,
+    "imagePalette": image.asset->metadata.palette
+  },
 
-const PRODUCTS_BY_SUBCATEGORY_QUERY = `
-  *[
+  "products": *[
     _type == "product" &&
     category->slug.current == $categorySlug &&
     subcategory->slug.current == $subcategorySlug
-  ]
-  | order(name asc){
+  ] | order(featured desc, name asc){
     _id,
     name,
-    "slug": slug.current,
     shortDescription,
     dosageForm,
     packaging,
-    image
+    image,
+    "slug": slug.current,
+    "imageAspectRatio": image.asset->metadata.dimensions.aspectRatio,
+    "imagePalette": image.asset->metadata.palette
   }
+}
 `
 
-type SubcategoryPage = {
+type SanityPaletteSwatch = {
+  background?: string
+  foreground?: string
+}
+
+type SanityImagePalette = {
+  dominant?: SanityPaletteSwatch
+  vibrant?: SanityPaletteSwatch
+  muted?: SanityPaletteSwatch
+  lightVibrant?: SanityPaletteSwatch
+  darkVibrant?: SanityPaletteSwatch
+  lightMuted?: SanityPaletteSwatch
+  darkMuted?: SanityPaletteSwatch
+}
+
+type CategoryData = {
+  _id: string
+  title: string
+  slug: string
+}
+
+type SubcategoryData = {
   _id: string
   title: string
   slug: string
   description?: string
   image?: unknown
-  categoryTitle: string
-  categorySlug: string
+  imageAspectRatio?: number
+  imagePalette?: SanityImagePalette
 }
 
-type Product = {
+type ProductData = {
   _id: string
   name: string
   slug: string
@@ -56,18 +83,39 @@ type Product = {
   dosageForm?: string
   packaging?: string
   image?: unknown
+  imageAspectRatio?: number
+  imagePalette?: SanityImagePalette
 }
 
-export async function generateStaticParams() {
-  const items: { categorySlug: string; subcategorySlug: string }[] =
-    await client.fetch(`
-      *[_type == "subcategory" && defined(slug.current) && defined(category->slug.current)]{
-        "categorySlug": category->slug.current,
-        "subcategorySlug": slug.current
-      }
-    `)
+type SubcategoryPageResponse = {
+  category: CategoryData | null
+  subcategory: SubcategoryData | null
+  products: ProductData[]
+}
 
-  return items
+async function getSubcategoryPageData(
+  categorySlug: string,
+  subcategorySlug: string
+): Promise<SubcategoryPageResponse | null> {
+  try {
+    const data = await client.fetch<SubcategoryPageResponse>(
+      SUBCATEGORY_PAGE_QUERY,
+      { categorySlug, subcategorySlug }
+    )
+
+    if (!data?.subcategory || !data?.category) {
+      return null
+    }
+
+    return {
+      category: data.category,
+      subcategory: data.subcategory,
+      products: Array.isArray(data.products) ? data.products : [],
+    }
+  } catch (error) {
+    console.error('Subcategory page fetch error:', error)
+    return null
+  }
 }
 
 export default async function SubcategoryPage({
@@ -76,91 +124,64 @@ export default async function SubcategoryPage({
   params: Promise<{ categorySlug: string; subcategorySlug: string }>
 }) {
   const { categorySlug, subcategorySlug } = await params
+  const data = await getSubcategoryPageData(categorySlug, subcategorySlug)
 
-  const subcategory: SubcategoryPage | null = await client.fetch(
-    SUBCATEGORY_PAGE_QUERY,
-    { categorySlug, subcategorySlug }
-  )
+  if (!data || !data.category || !data.subcategory) {
+    notFound()
+  }
 
-  if (!subcategory) notFound()
-
-  const products: Product[] = await client.fetch(PRODUCTS_BY_SUBCATEGORY_QUERY, {
-    categorySlug,
-    subcategorySlug,
-  })
+  const { category, subcategory, products } = data
 
   return (
-    <main className="min-h-screen bg-white px-4 py-16 md:px-8 lg:px-16">
-      <div className="mx-auto max-w-7xl">
-        <Link
-          href={`/products/${categorySlug}`}
-          className="inline-flex text-sm font-medium text-blue-700 hover:text-blue-800"
-        >
-          ← Back to {subcategory.categoryTitle}
-        </Link>
-
-        <div className="mt-6 mb-10">
+    <main
+      className="relative min-h-screen overflow-hidden px-4 py-14 md:px-8 lg:px-16 lg:py-24"
+      style={{
+        background: `
+          radial-gradient(circle at 8% 10%, rgba(78,163,241,0.16) 0%, transparent 30%),
+          radial-gradient(circle at 92% 20%, rgba(31,111,209,0.08) 0%, transparent 28%),
+          linear-gradient(180deg, #ffffff 0%, #f7fbff 34%, #eef6ff 70%, #ffffff 100%)
+        `,
+      }}
+    >
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="mb-12 max-w-4xl">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">
-            Subcategory
+            {category.title}
           </p>
-          <h1 className="mt-3 text-3xl font-bold text-slate-900 md:text-5xl">
+
+          <h1 className="mt-4 text-3xl font-bold text-slate-900 md:text-5xl">
             {subcategory.title}
           </h1>
+
           <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
-            {subcategory.description || 'No description available.'}
+            {subcategory.description ||
+              `Explore ${subcategory.title} products under ${category.title}.`}
           </p>
         </div>
 
         {products.length === 0 ? (
-          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 text-slate-600">
-            No products added in this subcategory yet.
+          <div className="rounded-[28px] border border-slate-200 bg-white/80 p-8 text-slate-600 shadow-sm backdrop-blur-xl">
+            No products found in this subcategory.
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-1 gap-7 md:grid-cols-2 xl:grid-cols-3">
             {products.map((product) => (
-              <Link
+              <AdaptiveCatalogCard
                 key={product._id}
                 href={`/products/item/${product.slug}`}
-                className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-              >
-                <div className="relative h-48 overflow-hidden rounded-2xl bg-slate-100">
-                  {product.image ? (
-                    <Image
-                      src={urlFor(product.image).width(900).height(600).url()}
-                      alt={product.name}
-                      fill
-                      className="object-cover transition duration-500 group-hover:scale-105"
-                    />
-                  ) : (
-                    <div className="flex h-full items-center justify-center text-sm text-slate-400">
-                      No Image
-                    </div>
-                  )}
-                </div>
-
-                <h3 className="mt-5 text-xl font-semibold text-slate-900">
-                  {product.name}
-                </h3>
-
-                <p className="mt-3 text-sm leading-6 text-slate-600">
-                  {product.shortDescription || 'No description available.'}
-                </p>
-
-                <div className="mt-5 space-y-2 text-sm text-slate-700">
-                  <p>
-                    <span className="font-medium">Dosage:</span>{' '}
-                    {product.dosageForm || '-'}
-                  </p>
-                  <p>
-                    <span className="font-medium">Packaging:</span>{' '}
-                    {product.packaging || '-'}
-                  </p>
-                </div>
-
-                <p className="mt-6 text-sm font-semibold text-blue-700 transition group-hover:translate-x-1">
-                  View Product →
-                </p>
-              </Link>
+                title={product.name}
+                description={
+                  product.shortDescription ||
+                  `Explore ${product.name} under ${subcategory.title}.`
+                }
+                eyebrow={subcategory.title}
+                image={product.image}
+                imageAspectRatio={product.imageAspectRatio}
+                imagePalette={product.imagePalette}
+                variant="product"
+                badge={category.title}
+                ctaLabel="Explore Product"
+              />
             ))}
           </div>
         )}

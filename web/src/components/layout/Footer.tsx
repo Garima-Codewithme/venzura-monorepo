@@ -288,8 +288,8 @@ export default function Footer() {
                     'rgba(216,234,255,0.78)',
                 }}
               >
-                15/7, 2/1 Manchanda Complex Kuldeep Nagar Nanhera Road, Ambala
-                Cantt, Haryana, India
+                SCO 15-16 B Block, Prabhu Prem Puram, Khojkipur Road, Ambala Cantt, Haryana,
+                Pin Code-133006
               </p>
             </ContactCard>
           </div>
