@@ -258,13 +258,13 @@ export default function Footer() {
           <div className="space-y-4 text-sm">
             <ContactCard label="Email">
               <a
-                href="mailto:venzuramedcor@gmail.com"
+                href="mailto:purchase@venzuramedcor.com"
                 className="break-all text-sm font-semibold transition-colors duration-300 hover:text-white"
                 style={{
                   color: '#d8eaff',
                 }}
               >
-                venzuramedcor@gmail.com
+                purchase@venzuramedcor.com
               </a>
             </ContactCard>
 

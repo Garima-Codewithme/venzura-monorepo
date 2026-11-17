@@ -9,7 +9,7 @@ import {
 const contactCards = [
   {
     title: 'Email Us',
-    value: 'Venzuramedcor@gmail.com',
+    value: 'purchase@venzuramedcor.com',
     text: 'For business enquiries, product discussions, and partnership communication.',
   },
   {
